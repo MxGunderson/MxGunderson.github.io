@@ -1,6 +1,5 @@
-import { Grid } from '@mui/material';
-import { textAlign } from '@mui/system';
 import './App.css';
+import { Grid } from '@mui/material';
 import Landing from './Componets/Views/Landing/Landing';
 
 function App() {
@@ -14,9 +13,6 @@ function App() {
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>
-
-    
-
     </div>
   );
 }

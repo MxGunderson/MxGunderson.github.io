@@ -1,24 +1,24 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+
 import { Songs } from '../../../DataBase/Songs';
+import SongTemplate from '../SongTemplate/SongTemplate';
 
 export default function Landing() {
     return (
-        <Autocomplete
-            freeSolo
-            id="free-solo-2-demo"
-            disableClearable
-            options={Songs.map((option: any) => option.songName)}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    label="Search input"
-                    InputProps={{
-                        ...params.InputProps,
-                        type: 'search',
-                    }}
-                />
-            )}
-        />
+        <div>
+            <Autocomplete
+                id="combo-box-demo"
+                options={Songs}
+                getOptionLabel={(option) => option.songName}
+                style={{ width: 300 }}
+                onChange={(e, value) => console.log("song name", e.target, value?.songName)}
+                renderInput={(params) => (
+                    <TextField {...params} label="Combo box" variant="outlined" />
+                )}
+            />
+
+            <SongTemplate />
+        </div>
     );
 }
