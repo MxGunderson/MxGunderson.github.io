@@ -9,16 +9,13 @@ export default function Landing() {
         <div>
             <Autocomplete
                 id="combo-box-demo"
-                options={Songs}
+                options={Songs.sort()}
                 getOptionLabel={(option) => option.songName}
-                style={{ width: 300 }}
-                onChange={(e, value) => console.log("song name", e.target, value?.songName)}
+                onChange={(e, value) => console.log("song name", e.target, value?.songName, value?.id)}
                 renderInput={(params) => (
-                    <TextField {...params} label="Combo box" variant="outlined" />
+                    <TextField {...params} label="Select song" variant="outlined" />
                 )}
             />
-
-            <SongTemplate />
         </div>
     );
 }

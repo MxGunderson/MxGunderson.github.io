@@ -5,7 +5,7 @@ export const Songs = [
     },
     {
         id: 1,
-        songName: "Heart after you"
+        songName: "Heart after you",
     },
     {
         id: 2,

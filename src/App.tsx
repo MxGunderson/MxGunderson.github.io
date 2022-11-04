@@ -1,19 +1,38 @@
 import './App.css';
 import { Grid } from '@mui/material';
+import Box from '@mui/material/Box';
+
 import Landing from './Componets/Views/Landing/Landing';
+import SongTemplate from './Componets/Views/SongTemplate/SongTemplate';
 
 function App() {
   return (
     <div className="App">
-      <Grid container spacing={2}>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={4}>
-          <h3 style={{ textAlignLast: 'center' }}>Worship Song Select</h3>
-          <Landing />
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={3}>
+          <Grid item xs>
+          </Grid>
+          <Grid item xs={6}>
+            <Landing />
+          </Grid>
+          <Grid item xs>
+          </Grid>
         </Grid>
-        <Grid item xs={4}></Grid>
-      </Grid>
-    </div>
+      </Box>
+
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={3}>
+          <Grid item xs>
+          </Grid>
+          <Grid item xs={6}>
+            <SongTemplate />
+          </Grid>
+          <Grid item xs>
+          </Grid>
+        </Grid>
+      </Box>
+
+    </div >
   );
 }
 
