@@ -5,10 +5,21 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 
+//not sure if i need this
+interface option {
+    id: number,
+    songName?: string,
+    verseOne?: string,
+    verseTwo?: string,
+    bridge?: string,
+    bridgeTwo?: string
+}
+
 export default function SongTemplate() {
 
     const [key, setKey] = useState('');
     const [checked, setChecked] = useState(false)
+
 
     //handles switch input
     const handleChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,22 +31,24 @@ export default function SongTemplate() {
         setKey(event.target.value);
     };
 
+    console.log("Key currently selected: ", key)
+
     return (
         //implement some grid functionality here
-        <div style={{textAlignLast: "center"}}>
+        <div style={{ textAlignLast: "center" }}>
             <Switch
                 checked={checked}
                 onChange={handleChecked}
                 inputProps={{ 'aria-label': 'controlled' }}
             />
-
+            
             {
                 checked
                     ?
 
                     <div>
                         Shows only selected song lyrics and numbers (nashville sys)
-
+                        
                     </div>
 
                     :
@@ -52,30 +65,22 @@ export default function SongTemplate() {
                             <MenuItem value="">
                                 <em>Select a Key</em>
                             </MenuItem>
-                            <MenuItem value={10}>A</MenuItem>
-
-                            <MenuItem value={10}>A#</MenuItem>
-                            <MenuItem value={10}>Bb</MenuItem>
-
-                            <MenuItem value={20}>B</MenuItem>
-                            <MenuItem value={30}>C</MenuItem>
-
-                            <MenuItem value={10}>C#</MenuItem>
-                            <MenuItem value={10}>Db</MenuItem>
-
-                            <MenuItem value={10}>D#</MenuItem>
-                            <MenuItem value={10}>Eb</MenuItem>
-
+                            <MenuItem value={1}>A</MenuItem>
+                            <MenuItem value={2}>A#</MenuItem>
+                            <MenuItem value={3}>Bb</MenuItem>
+                            <MenuItem value={4}>B</MenuItem>
+                            <MenuItem value={5}>C</MenuItem>
+                            <MenuItem value={6}>C#</MenuItem>
+                            <MenuItem value={7}>Db</MenuItem>
+                            <MenuItem value={8}>D#</MenuItem>
+                            <MenuItem value={9}>Eb</MenuItem>
                             <MenuItem value={10}>E</MenuItem>
-                            <MenuItem value={10}>F</MenuItem>
-
-                            <MenuItem value={10}>F#</MenuItem>
-                            <MenuItem value={10}>Gb</MenuItem>
-
-                            <MenuItem value={10}>G</MenuItem>
-
-                            <MenuItem value={10}>G#</MenuItem>
-                            <MenuItem value={10}>Ab</MenuItem>
+                            <MenuItem value={11}>F</MenuItem>
+                            <MenuItem value={12}>F#</MenuItem>
+                            <MenuItem value={13}>Gb</MenuItem>
+                            <MenuItem value={14}>G</MenuItem>
+                            <MenuItem value={15}>G#</MenuItem>
+                            <MenuItem value={16}>Ab</MenuItem>
                         </Select>
 
                         <div>
