@@ -1,7 +1,6 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import { Songs } from '../../../DataBase/Songs';
 import SongTemplate from '../SongTemplate/SongOptions';
 import { useState } from 'react';
 
@@ -19,18 +18,7 @@ export default function Landing() {
 
     return (
         <div>
-            <Autocomplete
-                id="combo-box-demo"
-                options={Songs.sort()}
-                getOptionLabel={(option) => option.songName}
-                onChange={(e: any, option) => lyrics(e.target.value, option?.verseOne)}
-                renderInput={(params) => (
-                    <TextField {...params} label="Select song" variant="outlined" />
-                )}
-            />
 
-            {/* <SongTemplate lyrics={option} /> */}
-            <SongTemplate />
         </div>
     );
 }
