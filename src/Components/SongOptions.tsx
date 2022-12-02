@@ -5,7 +5,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 
-//not sure if i need this
+//interface used to catch the incoming data
+//this is how we modal the data coming into this component
 interface option {
     id: number,
     songName?: string,
@@ -15,7 +16,7 @@ interface option {
     bridgeTwo?: string
 }
 
-export default function SongTemplate() {
+export default function SongOptions() {
 
     const [key, setKey] = useState('');
     const [checked, setChecked] = useState(false)
