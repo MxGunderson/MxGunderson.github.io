@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 
 import db from "./db.json";
 
-import Landing from './Componets/Views/Landing/SongSelection';
-import SongTemplate from './Componets/Views/SongTemplate/SongOptions';
+import Landing from './Components/Landing';
+import SongTemplate from './Components/SongOptions';
 
 function App() {
   return (

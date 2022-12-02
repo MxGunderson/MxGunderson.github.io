@@ -1,8 +1,8 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import db from '../../../db.json'
-import SongTemplate from '../SongTemplate/SongOptions';
+import db from '../db.json'
+import SongOptions from './SongOptions';
 import { useState } from 'react';
 
 export default function Landing() {
@@ -29,8 +29,9 @@ export default function Landing() {
                 )}
             />
 
-            {/* <SongTemplate lyrics={option} /> */}
-            <SongTemplate />
+            {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
+            {/* <SongOptions lyrics={option} /> */}
+            <SongOptions />
 
             
         </div>
