@@ -4,22 +4,41 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
+import db from '../db.json';
+import { SongDB } from './Landing';
 
-//interface used to catch the incoming data
-//this is how we modal the data coming into this component
-interface option {
-    id: number,
-    songName?: string,
-    verseOne?: string,
-    verseTwo?: string,
-    bridge?: string,
-    bridgeTwo?: string
+
+function DisplaySong({id, songName, artist, defaultKey, intro, verseOne, verseTwo, verseThree, verseFour, chorus, preChorus, bridge, verseOneNotes, preChorusNotes, bridgeNotes, chorusNotes}: SongDB) {
+    return (
+        <div className='lyrics'>
+        { db.map(lyric => {
+          return(
+            <div key={lyric.id}>
+              <h4>{lyric.songName} - {lyric.artist}</h4>
+              <h4>Key: {lyric.defaultKey}</h4>
+              <p>{lyric.verseOneNotes}</p>
+              <p>{lyric.verseOne}</p>
+              <p>{lyric.verseTwo}</p>
+              <p>{lyric.verseThree}</p>
+              <p>{lyric.verseFour}</p>
+              <p>{lyric.preChorusNotes}</p>
+              <p>{lyric.preChorus}</p>
+              <p>{lyric.chorusNotes}</p>
+              <p>{lyric.chorus}</p>
+              <p>{lyric.bridgeNotes}</p>
+              <p>{lyric.bridge}</p>
+            </div>
+          )
+        }) }
+      </div>
+    )
 }
 
 export default function SongOptions() {
 
     const [key, setKey] = useState('');
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(false);
+    const [song, setSong] = useState(false);
 
 
     //handles switch input
@@ -32,6 +51,11 @@ export default function SongOptions() {
         setKey(event.target.value);
     };
 
+    //handles song selection
+    //const handleSong = (event: ?) => {
+    //    setSong(event.target.value);
+    //}
+
     console.log("Key currently selected: ", key)
 
     return (
@@ -42,14 +66,14 @@ export default function SongOptions() {
                 onChange={handleChecked}
                 inputProps={{ 'aria-label': 'controlled' }}
             />
-            
+
             {
                 checked
                     ?
 
                     <div>
                         Shows only selected song lyrics and numbers (nashville sys)
-                        
+
                     </div>
 
                     :
@@ -88,6 +112,18 @@ export default function SongOptions() {
                             Shows selected song lyrics plus the correct corresponding chords
                         </div>
                     </FormControl>
+            }
+
+            {
+                song
+                    ?
+                    <div>
+                        <p>Change this text</p>
+                    </div>
+                    :
+                    <div>
+                        <p><DisplaySong /></p>
+                    </div>
             }
         </div>
     );

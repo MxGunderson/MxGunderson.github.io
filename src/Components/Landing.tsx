@@ -5,6 +5,25 @@ import db from '../db.json'
 import SongOptions from './SongOptions';
 import { useState } from 'react';
 
+export interface SongDB {
+    id?: number;
+    songName?: string;
+    artist?: string;
+    defaultKey?: string;
+    intro?: string;
+    verseOne?: string;
+    verseTwo?: string;
+    verseThree?: string;
+    verseFour?: string;
+    chorus?: string;
+    preChorus?: string;
+    bridge?: string;
+    verseOneNotes?: string;
+    preChorusNotes?: string;
+    bridgeNotes?: string;
+    chorusNotes?: string;
+}
+
 export default function Landing() {
 
     const [songSelect, setSongSelect] = useState('');
@@ -31,7 +50,7 @@ export default function Landing() {
 
             {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
             {/* <SongOptions lyrics={option} /> */}
-            <SongOptions />
+            <SongOptions {...setSongSelect}/>
 
             
         </div>
