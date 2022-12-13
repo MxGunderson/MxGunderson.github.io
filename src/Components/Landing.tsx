@@ -50,7 +50,7 @@ export default function Landing() {
 
             {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
             {/* <SongOptions lyrics={option} /> */}
-            <SongOptions {...setSongSelect}/>
+            <SongOptions setSongSelect={lyrics}/>
 
             
         </div>

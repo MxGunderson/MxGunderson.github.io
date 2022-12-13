@@ -34,7 +34,7 @@ function DisplaySong({id, songName, artist, defaultKey, intro, verseOne, verseTw
     )
 }
 
-export default function SongOptions() {
+export default function SongOptions(setSongSelect: any, lyrics: any) {
 
     const [key, setKey] = useState('');
     const [checked, setChecked] = useState(false);
@@ -122,7 +122,7 @@ export default function SongOptions() {
                     </div>
                     :
                     <div>
-                        <p><DisplaySong /></p>
+                        <DisplaySong  {...lyrics.verseOne}/>
                     </div>
             }
         </div>
