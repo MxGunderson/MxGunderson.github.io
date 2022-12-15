@@ -122,7 +122,7 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
                     </div>
                     :
                     <div>
-                        <DisplaySong  {...lyrics.verseOne}/>
+                        <DisplaySong />
                     </div>
             }
         </div>
