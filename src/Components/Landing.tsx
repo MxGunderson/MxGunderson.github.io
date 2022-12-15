@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import db from '../db.json'
 import SongOptions from './SongOptions';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface SongDB {
     id?: number;
@@ -35,6 +35,18 @@ export default function Landing() {
         console.log("option: ", option, e)
     }
 
+    //'fetch' the data and put it into a variable
+    //then do something with that variable
+    fetch(db)
+    .then(data => data.json())
+    .then(res => res)
+    
+    //useEffect()
+    useEffect(() => {
+      make some sort database call
+    
+    },[data])
+    
 
     return (
         <div>
@@ -47,12 +59,15 @@ export default function Landing() {
                     <TextField {...params} label="Select song" variant="outlined" />
                 )}
             />
+            <hr />
+            <h3>Above is landing, below are song options</h3>
+            <hr />
 
             {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
             {/* <SongOptions lyrics={option} /> */}
-            <SongOptions setSongSelect={lyrics}/>
+            <SongOptions setSongSelect={lyrics} />
 
-            
+
         </div>
     );
 }

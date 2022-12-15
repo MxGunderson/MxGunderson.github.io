@@ -4,33 +4,44 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 import db from '../db.json';
 import { SongDB } from './Landing';
+import { stringify } from 'querystring';
 
 
-function DisplaySong({id, songName, artist, defaultKey, intro, verseOne, verseTwo, verseThree, verseFour, chorus, preChorus, bridge, verseOneNotes, preChorusNotes, bridgeNotes, chorusNotes}: SongDB) {
+function DisplaySong({ id, songName, artist, defaultKey, intro, verseOne, verseTwo, verseThree, verseFour, chorus, preChorus, bridge, verseOneNotes, preChorusNotes, bridgeNotes, chorusNotes }: SongDB) {
+   
+    if setSongSelect has an empty string, display nothing, otherwise display song.
+
+    if(!data) {
+        code here
+    }
+
     return (
         <div className='lyrics'>
-        { db.map(lyric => {
-          return(
-            <div key={lyric.id}>
-              <h4>{lyric.songName} - {lyric.artist}</h4>
-              <h4>Key: {lyric.defaultKey}</h4>
-              <p>{lyric.verseOneNotes}</p>
-              <p>{lyric.verseOne}</p>
-              <p>{lyric.verseTwo}</p>
-              <p>{lyric.verseThree}</p>
-              <p>{lyric.verseFour}</p>
-              <p>{lyric.preChorusNotes}</p>
-              <p>{lyric.preChorus}</p>
-              <p>{lyric.chorusNotes}</p>
-              <p>{lyric.chorus}</p>
-              <p>{lyric.bridgeNotes}</p>
-              <p>{lyric.bridge}</p>
-            </div>
-          )
-        }) }
-      </div>
+            {db.map(lyric => {
+                return (
+                    <div key={lyric.id}>
+                        <h4>{lyric.songName} - {lyric.artist}</h4>
+                        <h4>Key: {lyric.defaultKey}</h4>
+                        <p>{lyric.verseOneNotes}</p>
+                        <p>{lyric.verseOne}</p>
+                        <p>{lyric.verseTwo}</p>
+                        <p>{lyric.verseThree}</p>
+                        <p>{lyric.verseFour}</p>
+                        <p>{lyric.preChorusNotes}</p>
+                        <p>{lyric.preChorus}</p>
+                        <p>{lyric.chorusNotes}</p>
+                        <p>{lyric.chorus}</p>
+                        <p>{lyric.bridgeNotes}</p>
+                        <p>{lyric.bridge}</p>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
@@ -40,15 +51,22 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
     const [checked, setChecked] = useState(false);
     const [song, setSong] = useState(false);
 
+    
+
 
     //handles switch input
     const handleChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
 
+    const handleSong = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSong(event.target.checked);
+    };
+
     //handles key selection
     const handleChange = (event: SelectChangeEvent) => {
         setKey(event.target.value);
+        console.log('isChecked')
     };
 
     //handles song selection
@@ -72,7 +90,21 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
                     ?
 
                     <div>
-                        Shows only selected song lyrics and numbers (nashville sys)
+                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                            <InputLabel id="demo-select-small">Key Select</InputLabel>
+                            <Select
+                                labelId="demo-select-small"
+                                id="demo-select-small"
+                                value={key}
+                                label="Key"
+                                onChange={handleChange}
+                                disabled={true}
+                            ></Select>
+
+                            <div>
+                                Shows selected song lyrics plus the correct corresponding chords
+                            </div>
+                        </FormControl>
 
                     </div>
 
@@ -114,6 +146,12 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
                     </FormControl>
             }
 
+            <Switch
+                checked={song}
+                onChange={handleSong}
+                inputProps={{ 'aria-label': 'controlled' }}
+            />
+
             {
                 song
                     ?
@@ -122,7 +160,7 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
                     </div>
                     :
                     <div>
-                        <DisplaySong />
+                        <DisplaySong  {...lyrics.verseOne} />
                     </div>
             }
         </div>
