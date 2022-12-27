@@ -34,20 +34,16 @@ export default function Landing() {
         // console.log("songSelect ", songSelect)
         console.log("option: ", option, e)
     }
-
-    //'fetch' the data and put it into a variable
-    //then do something with that variable
-    fetch(db)
-    .then(data => data.json())
-    .then(res => res)
     
     //useEffect()
     useEffect(() => {
-      make some sort database call
-    
-    },[data])
-    
+      fetch('../db.json')
+        .then(response => response.json())
+        //console logging data pulled from db.json,
+        .then((json) => console.log(json))
+     }, [])
 
+     
     return (
         <div>
             <Autocomplete
@@ -65,7 +61,7 @@ export default function Landing() {
 
             {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
             {/* <SongOptions lyrics={option} /> */}
-            <SongOptions setSongSelect={lyrics} />
+            <SongOptions songSelect={songSelect} />
 
 
         </div>

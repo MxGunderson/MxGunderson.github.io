@@ -14,11 +14,11 @@ import { stringify } from 'querystring';
 
 function DisplaySong({ id, songName, artist, defaultKey, intro, verseOne, verseTwo, verseThree, verseFour, chorus, preChorus, bridge, verseOneNotes, preChorusNotes, bridgeNotes, chorusNotes }: SongDB) {
    
-    if setSongSelect has an empty string, display nothing, otherwise display song.
+    //if setSongSelect has an empty string, display nothing, otherwise display song.
 
-    if(!data) {
-        code here
-    }
+    //if(!data) {
+    //    code here
+    //}
 
     return (
         <div className='lyrics'>
@@ -45,7 +45,7 @@ function DisplaySong({ id, songName, artist, defaultKey, intro, verseOne, verseT
     )
 }
 
-export default function SongOptions(setSongSelect: any, lyrics: any) {
+export default function SongOptions(songSelect: any, lyrics: any) {
 
     const [key, setKey] = useState('');
     const [checked, setChecked] = useState(false);
@@ -54,11 +54,12 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
     
 
 
-    //handles switch input
+    //handles nashville switch input
     const handleChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
 
+    //handles songDisplay switch input
     const handleSong = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSong(event.target.checked);
     };
@@ -160,7 +161,7 @@ export default function SongOptions(setSongSelect: any, lyrics: any) {
                     </div>
                     :
                     <div>
-                        <DisplaySong  {...lyrics.verseOne} />
+                        <DisplaySong />
                     </div>
             }
         </div>
