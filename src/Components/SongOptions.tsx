@@ -51,9 +51,6 @@ export default function SongOptions(songSelect: any, lyrics: any) {
     const [checked, setChecked] = useState(false);
     const [song, setSong] = useState(false);
 
-    
-
-
     //handles nashville switch input
     const handleChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
