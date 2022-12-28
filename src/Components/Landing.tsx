@@ -27,33 +27,79 @@ export interface SongDB {
 export default function Landing() {
 
     const [songSelect, setSongSelect] = useState('');
+    const [songDetails, setSongDetails] = useState([])
 
-    const songDb = [
+    const songList = [
         {
             id: 0,
-            songName: "You Are My Rock",
-            artist: "Tim Cone",
-            defaultKey: "B",
-            intro: "",
-            verseOne: "You are my rock and there is no other, You are my rock",
-            verseTwo: "",
-            verseThree: "",
-            verseFour: "",
-            chorus: "You are my refuge, you are my tower of strength. You are my shelter, I'll run into your Name (for there I am saved)",
-            preChorus: "You alone are my strength, You alone are my strength. (You are my rock and there is no other, you are my rock)",
-            bridge: "The Lord is my rock, He's become my salvation. Whom shall I fear, whom shall I fear, whom shall I fear?",
-            verseOneNotes: "|:B  |B E:|",
-            preChorusNotes: "|G#m |E |:B :|",
-            bridgeNotes: "|:E G#m |F# B :|",
-            chorusNotes: "|:E G#m | F# B :| }"
+            details: {
+                songName: "You Are My Rock",
+                artist: "Tim Cone",
+                defaultKey: "B",
+                intro: "",
+                verseOne: "You are my rock and there is no other, You are my rock",
+                verseTwo: "",
+                verseThree: "",
+                verseFour: "",
+                chorus: "You are my refuge, you are my tower of strength. You are my shelter, I'll run into your Name (for there I am saved)",
+                preChorus: "You alone are my strength, You alone are my strength. (You are my rock and there is no other, you are my rock)",
+                bridge: "The Lord is my rock, He's become my salvation. Whom shall I fear, whom shall I fear, whom shall I fear?",
+                verseOneNotes: "|:B  |B E:|",
+                preChorusNotes: "|G#m |E |:B :|",
+                bridgeNotes: "|:E G#m |F# B :|",
+                chorusNotes: "|:E G#m | F# B :| }"
+            }
+        },
+        {
+            id: 1,
+            details: {
+                songName: "One thing remains",
+                artist: "Tim Cone",
+                defaultKey: "B",
+                intro: "",
+                verseOne: "You are my rock and there is no other, You are my rock",
+                verseTwo: "",
+                verseThree: "",
+                verseFour: "",
+                chorus: "You are my refuge, you are my tower of strength. You are my shelter, I'll run into your Name (for there I am saved)",
+                preChorus: "You alone are my strength, You alone are my strength. (You are my rock and there is no other, you are my rock)",
+                bridge: "The Lord is my rock, He's become my salvation. Whom shall I fear, whom shall I fear, whom shall I fear?",
+                verseOneNotes: "|:B  |B E:|",
+                preChorusNotes: "|G#m |E |:B :|",
+                bridgeNotes: "|:E G#m |F# B :|",
+                chorusNotes: "|:E G#m | F# B :| }"
+            }
         }
     ];
 
-    const lyrics = (e: any) => {
+    console.log('songlist array of objects', songList)
+    console.log('songlist mapping with id', songList.map(x => x.id))
+    console.log(songSelect)
 
-        // setSongSelect(option)
-        // console.log("songSelect ", songSelect)
-        console.log("onchange call: ", e)
+    const handleClick = (value: any) => {
+        //assigning the 'value' variable (which comes from line 113) to the songSelect state
+        value = songSelect
+
+        //set state
+        setSongSelect(songSelect)
+        
+        //map through data in state then display it
+        const returnSelectedSong = songList.map(s => {
+            return(
+                <div key={s.id}>
+                    <li>{s.details.artist}</li>
+                    <li>{s.details.songName}</li>
+                    <li>{s.details.defaultKey}</li>
+                </div>
+            )
+        })
+        console.log('This is handleclick, song name: ', songSelect)
+        console.log(songSelect)
+
+        //return selected song (returnSong) in JSX
+        //im not sure how to do this
+        console.log(returnSelectedSong)
+        return <div>{returnSelectedSong}</div>
     }
 
     return (
@@ -61,11 +107,10 @@ export default function Landing() {
             <Autocomplete
                 onInputChange={(e, songSelect) => {
                     setSongSelect(songSelect);
-                    { console.log('this is a song', songSelect) }
                 }}
                 id="controllable-states-demo"
-                options={songDb.map(x => x.songName)}
-                sx={{ width: 300 }}
+                options={songList.map(x => x.details.songName)}
+                onChange={(e, value) => handleClick(value)}
                 renderInput={(params) => <TextField {...params} label="Select Song" />}
             />
 
@@ -75,7 +120,10 @@ export default function Landing() {
 
             {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
             {/* <SongOptions lyrics={option} /> */}
-            <SongOptions songSelect={songSelect} />
+            {/* <SongOptions songSelect={songSelect} /> */}
+            
+            {/* display the return song here, but not sure how to do this */}
+            {/* <div>{getSong}</div> */}
         </div>
     );
 }
