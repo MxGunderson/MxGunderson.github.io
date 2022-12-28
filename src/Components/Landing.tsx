@@ -72,20 +72,22 @@ export default function Landing() {
         }
     ];
 
+    //list of console logs to view HOW the data is being displayed
     console.log('songlist array of objects', songList)
     console.log('songlist mapping with id', songList.map(x => x.id))
     console.log(songSelect)
 
+    //handclick is called when user selects a song
     const handleClick = (value: any) => {
         //assigning the 'value' variable (which comes from line 113) to the songSelect state
         value = songSelect
 
         //set state
         setSongSelect(songSelect)
-        
+
         //map through data in state then display it
         const returnSelectedSong = songList.map(s => {
-            return(
+            return (
                 <div key={s.id}>
                     <li>{s.details.artist}</li>
                     <li>{s.details.songName}</li>
@@ -93,6 +95,8 @@ export default function Landing() {
                 </div>
             )
         })
+
+        //continuing to prove that the stat in songSelect is being populated correctly.
         console.log('This is handleclick, song name: ', songSelect)
         console.log(songSelect)
 
@@ -105,25 +109,31 @@ export default function Landing() {
     return (
         <div>
             <Autocomplete
-                onInputChange={(e, songSelect) => {
+                onInputChange={(e, songSelect) => { //sets state when song is clicked
                     setSongSelect(songSelect);
                 }}
                 id="controllable-states-demo"
-                options={songList.map(x => x.details.songName)}
-                onChange={(e, value) => handleClick(value)}
-                renderInput={(params) => <TextField {...params} label="Select Song" />}
+                options={songList.map(x => x.details.songName)} //used in the search bar
+                onChange={(e, value) => handleClick(value)} //calls handleClick
+                renderInput={(params) => <TextField {...params} label="Select Song" />} //need this
             />
 
             <hr />
             <h3>Above is landing, below are song options</h3>
             <hr />
 
+            {/* -------------------------------------------- */}
+
+            {/* can be ignored for now, we aren't wanting to pass any data anywhere. Wnat to keep in 'in house' */}
+
             {/* we need to pass the data to the songOptions component, so that songOptions can use the data. */}
             {/* <SongOptions lyrics={option} /> */}
             {/* <SongOptions songSelect={songSelect} /> */}
-            
+            {/* -------------------------------------------- */}
+
+            {/* this is where im wanting to return the selected song data found between line 89 - 97 */}
             {/* display the return song here, but not sure how to do this */}
-            {/* <div>{getSong}</div> */}
+            {/* <div>{handleClick()}</div> */}
         </div>
     );
 }
